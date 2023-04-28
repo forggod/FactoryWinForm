@@ -67,5 +67,10 @@ namespace FactoryWinForm
             };
             DataForm futurainfoDataForm = new DataForm(tableName, tableFields);
         }
+
+        private void button_export_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

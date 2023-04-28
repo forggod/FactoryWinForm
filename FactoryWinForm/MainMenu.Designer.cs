@@ -33,11 +33,13 @@
             button_invoices = new Button();
             button_customers = new Button();
             button_products = new Button();
+            button_export = new Button();
             panel_main.SuspendLayout();
             SuspendLayout();
             // 
             // panel_main
             // 
+            panel_main.Controls.Add(button_export);
             panel_main.Controls.Add(button_reports);
             panel_main.Controls.Add(button_invoices);
             panel_main.Controls.Add(button_customers);
@@ -87,6 +89,16 @@
             button_products.UseVisualStyleBackColor = true;
             button_products.Click += button_products_Click;
             // 
+            // button_export
+            // 
+            button_export.Location = new Point(54, 187);
+            button_export.Name = "button_export";
+            button_export.Size = new Size(100, 30);
+            button_export.TabIndex = 1;
+            button_export.Text = "Экспорт";
+            button_export.UseVisualStyleBackColor = true;
+            button_export.Click += button_export_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -108,5 +120,6 @@
         private Button button_invoices;
         private Button button_customers;
         private Button button_products;
+        private Button button_export;
     }
 }

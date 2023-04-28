@@ -76,17 +76,47 @@ namespace FactoryWinForm
         private void ToolStripMenuItem_Add_Click(object sender, EventArgs e)
         {
             int index = dataGridView_Data.SelectedRows[0].Index;
-            AddFieldForm addFieldForm = new AddFieldForm();
+            if (_table == "products")
+            {
+                AddProductForm addProductForm = new AddProductForm(_connection, _table);
+            }
+            if (_table == "customers")
+            {
+
+            }
+            if (_table == "futura")
+            {
+
+            }
+            if (_table == "futura_info")
+            {
+
+            }
         }
 
         private void ToolStripMenuItem_Edit_Click(object sender, EventArgs e)
         {
-            EditFieldForm editFieldForm = new EditFieldForm();
+            if (_table == "products")
+            {
+                EditProductForm editProductForm = new EditProductForm(_connection, _table);
+            }
+            if (_table == "customers")
+            {
+
+            }
+            if (_table == "futura")
+            {
+
+            }
+            if (_table == "futura_info")
+            {
+
+            }
         }
 
         private void ToolStripMenuItem_Delete_Click(object sender, EventArgs e)
         {
-            deleteData(1);
+            // TODO: deleteData();
         }
     }
 }

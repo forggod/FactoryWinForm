@@ -1,6 +1,6 @@
 ﻿namespace FactoryWinForm
 {
-    partial class AddFieldForm
+    partial class EditProductForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,68 +29,71 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            numericUpDown_nounce = new NumericUpDown();
             button_cancel = new Button();
-            button_confirm = new Button();
-            textBox2 = new TextBox();
-            label_count = new Label();
-            textBox1 = new TextBox();
+            button_edit = new Button();
+            label_nounce = new Label();
+            textBox_name = new TextBox();
             label_name = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_nounce).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(numericUpDown_nounce);
             panel1.Controls.Add(button_cancel);
-            panel1.Controls.Add(button_confirm);
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(label_count);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(button_edit);
+            panel1.Controls.Add(label_nounce);
+            panel1.Controls.Add(textBox_name);
             panel1.Controls.Add(label_name);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(360, 237);
-            panel1.TabIndex = 1;
+            panel1.TabIndex = 2;
+            // 
+            // numericUpDown_nounce
+            // 
+            numericUpDown_nounce.Location = new Point(127, 90);
+            numericUpDown_nounce.Name = "numericUpDown_nounce";
+            numericUpDown_nounce.Size = new Size(201, 23);
+            numericUpDown_nounce.TabIndex = 3;
             // 
             // button_cancel
             // 
-            button_cancel.Location = new Point(205, 168);
+            button_cancel.Location = new Point(228, 160);
             button_cancel.Name = "button_cancel";
             button_cancel.Size = new Size(100, 30);
             button_cancel.TabIndex = 2;
             button_cancel.Text = "Отмена";
             button_cancel.UseVisualStyleBackColor = true;
+            button_cancel.Click += button_cancel_Click;
             // 
-            // button_confirm
+            // button_edit
             // 
-            button_confirm.Location = new Point(53, 168);
-            button_confirm.Name = "button_confirm";
-            button_confirm.Size = new Size(100, 30);
-            button_confirm.TabIndex = 2;
-            button_confirm.Text = "Подтвердить";
-            button_confirm.UseVisualStyleBackColor = true;
+            button_edit.Location = new Point(31, 160);
+            button_edit.Name = "button_edit";
+            button_edit.Size = new Size(100, 30);
+            button_edit.TabIndex = 2;
+            button_edit.Text = "Добавить";
+            button_edit.UseVisualStyleBackColor = true;
+            button_edit.Click += button_edit_Click;
             // 
-            // textBox2
+            // label_nounce
             // 
-            textBox2.Location = new Point(128, 87);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(200, 23);
-            textBox2.TabIndex = 1;
+            label_nounce.AutoSize = true;
+            label_nounce.Location = new Point(31, 90);
+            label_nounce.Name = "label_nounce";
+            label_nounce.Size = new Size(72, 15);
+            label_nounce.TabIndex = 0;
+            label_nounce.Text = "Количество";
             // 
-            // label_count
+            // textBox_name
             // 
-            label_count.AutoSize = true;
-            label_count.Location = new Point(31, 90);
-            label_count.Name = "label_count";
-            label_count.Size = new Size(91, 15);
-            label_count.TabIndex = 0;
-            label_count.Text = "Ед.  измерения:";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(127, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(201, 23);
-            textBox1.TabIndex = 1;
+            textBox_name.Location = new Point(127, 30);
+            textBox_name.Name = "textBox_name";
+            textBox_name.Size = new Size(201, 23);
+            textBox_name.TabIndex = 1;
             // 
             // label_name
             // 
@@ -101,27 +104,28 @@
             label_name.TabIndex = 0;
             label_name.Text = "Наименование:";
             // 
-            // AddFieldForm
+            // EditProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 261);
             Controls.Add(panel1);
-            Name = "AddFieldForm";
-            Text = "AddFieldForm";
+            Name = "EditProductForm";
+            Text = "EditFieldForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_nounce).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
+        private NumericUpDown numericUpDown_nounce;
         private Button button_cancel;
-        private Button button_confirm;
-        private TextBox textBox2;
-        private Label label_count;
-        private TextBox textBox1;
+        private Button button_edit;
+        private Label label_nounce;
+        private TextBox textBox_name;
         private Label label_name;
     }
 }
