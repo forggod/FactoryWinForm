@@ -1,0 +1,39 @@
+CREATE TABLE customers (
+	id SERIAL,
+	name CHARACTER VARYING(100) NOT NULL,
+	adress CHARACTER VARYING(100) NOT NULL,
+	phone INTEGER NOT NULL,
+	PRIMARY KEY(id),
+	UNIQUE(name)
+);
+
+CREATE TABLE products (
+	id SERIAL,
+	name CHARACTER VARYING(100) NOT NULL,
+	nounce INTEGER NOT NULL,
+	PRIMARY KEY(id),
+	UNIQUE(name)
+);
+
+CREATE TABLE futura (
+	id SERIAL,
+	id_customer INTEGER NOT NULL,
+	date TIMESTAMP NOT NULL,
+	payment_type BOOLEAN NOT NULL,
+	prepayment BOOLEAN NOT NULL,
+	sent BOOLEAN NOT NULL,
+	total_sum MONEY NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_customer) REFERENCES customers (id)
+);
+
+CREATE TABLE futura_info (
+	id SERIAL,
+	id_futura INTEGER NOT NULL,
+	id_product INTEGER NOT NULL,
+	quantity INTEGER NOT NULL,
+	price MONEY NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_futura) REFERENCES futura (id),
+	FOREIGN KEY (id_product) REFERENCES products (id)
+);
