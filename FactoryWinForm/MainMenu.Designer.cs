@@ -31,7 +31,7 @@
             panel_main = new Panel();
             button_reports = new Button();
             button_invoices = new Button();
-            button_clients = new Button();
+            button_customers = new Button();
             button_products = new Button();
             panel_main.SuspendLayout();
             SuspendLayout();
@@ -40,7 +40,7 @@
             // 
             panel_main.Controls.Add(button_reports);
             panel_main.Controls.Add(button_invoices);
-            panel_main.Controls.Add(button_clients);
+            panel_main.Controls.Add(button_customers);
             panel_main.Controls.Add(button_products);
             panel_main.Location = new Point(12, 11);
             panel_main.Name = "panel_main";
@@ -55,6 +55,7 @@
             button_reports.TabIndex = 0;
             button_reports.Text = "Отчёты";
             button_reports.UseVisualStyleBackColor = true;
+            button_reports.Click += button_reports_Click;
             // 
             // button_invoices
             // 
@@ -64,15 +65,17 @@
             button_invoices.TabIndex = 0;
             button_invoices.Text = "Накладные";
             button_invoices.UseVisualStyleBackColor = true;
+            button_invoices.Click += button_invoices_Click;
             // 
-            // button_clients
+            // button_customers
             // 
-            button_clients.Location = new Point(54, 79);
-            button_clients.Name = "button_clients";
-            button_clients.Size = new Size(100, 30);
-            button_clients.TabIndex = 0;
-            button_clients.Text = "Клиенты";
-            button_clients.UseVisualStyleBackColor = true;
+            button_customers.Location = new Point(54, 79);
+            button_customers.Name = "button_customers";
+            button_customers.Size = new Size(100, 30);
+            button_customers.TabIndex = 0;
+            button_customers.Text = "Заказщики";
+            button_customers.UseVisualStyleBackColor = true;
+            button_customers.Click += button_customers_Click;
             // 
             // button_products
             // 
@@ -82,6 +85,7 @@
             button_products.TabIndex = 0;
             button_products.Text = "Товары";
             button_products.UseVisualStyleBackColor = true;
+            button_products.Click += button_products_Click;
             // 
             // MainMenu
             // 
@@ -102,7 +106,7 @@
         private Panel panel_main;
         private Button button_reports;
         private Button button_invoices;
-        private Button button_clients;
+        private Button button_customers;
         private Button button_products;
     }
 }

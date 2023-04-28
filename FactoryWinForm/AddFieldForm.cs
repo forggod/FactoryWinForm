@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FactoryWinForm
 {
-    public partial class FieldForm : Form
+    public partial class AddFieldForm : Form
     {
-        public FieldForm()
+        public AddFieldForm()
         {
             InitializeComponent();
         }
