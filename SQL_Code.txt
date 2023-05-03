@@ -24,10 +24,10 @@ CREATE TABLE futura (
 	id SERIAL,
 	id_customer INTEGER NOT NULL,
 	date TIMESTAMP NOT NULL,
-	payment_type BOOLEAN NOT NULL,
+	payment_type CHARACTER VARYING(20) NOT NULL,
 	prepayment BOOLEAN NOT NULL,
 	sent BOOLEAN NOT NULL,
-	total_sum MONEY NOT NULL,
+	total_sum MONEY,
 	PRIMARY KEY(id),
 	FOREIGN KEY (id_customer) REFERENCES customers (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -37,7 +37,7 @@ CREATE TABLE futura_info (
 	id_futura INTEGER NOT NULL,
 	id_product INTEGER NOT NULL,
 	quantity INTEGER NOT NULL,
-	price MONEY NOT NULL,
+	price MONEY,
 	PRIMARY KEY(id),
 	FOREIGN KEY (id_futura) REFERENCES futura (id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (id_product) REFERENCES products (id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -52,7 +52,7 @@ SELECT * FROM customers;
 INSERT INTO futura (id_customer, date, payment_type, prepayment, sent, total_sum) VALUES (1, '2023-4-27', TRUE, TRUE, FALSE, 56000);
 SELECT f.id, c.name as customer, f.date, f.payment_type, f.prepayment, f.sent, f.total_sum FROM futura f, customers c;
 
-INSERT INTO futura_info (id_futura, id_product, quantity, price) VALUES (1, 3, 120, 56000);
+INSERT INTO futura_info (id_futura, id_product, quantity, price) VALUES (1, 1, 120, 56000);
 SELECT f.id, f.id_futura, p.name, f.quantity, f.price FROM futura_info f, products p;
 
 DELETE FROM products WHERE name = 'sprite';

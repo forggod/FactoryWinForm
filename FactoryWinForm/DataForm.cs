@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using Npgsql;
 using System.Data;
+using System.Security.Cryptography;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace FactoryWinForm
@@ -20,6 +21,7 @@ namespace FactoryWinForm
             InitializeComponent();
             initConnection();
             this.Show();
+            timer_update.Enabled = true;
         }
 
         private void initConnection()
@@ -66,7 +68,7 @@ namespace FactoryWinForm
         private void deleteData(int id)
         {
             _connection.Open();
-            using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand($"DELETE FROM {_table} WHERE id = '{id}';"))
+            using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand($"DELETE FROM {_table} WHERE id = '{id}';", _connection))
             {
                 npgsqlCommand.ExecuteNonQuery();
             }
@@ -75,18 +77,17 @@ namespace FactoryWinForm
 
         private void ToolStripMenuItem_Add_Click(object sender, EventArgs e)
         {
-            int index = dataGridView_Data.SelectedRows[0].Index;
             if (_table == "products")
             {
-                AddProductForm addProductForm = new AddProductForm(_connection, _table);
+                AEProductForm aeProductForm = new AEProductForm(_connection, 0, null);
             }
             if (_table == "customers")
             {
-
+                AECustomers aECustomers = new AECustomers(_connection, 0, null);
             }
             if (_table == "futura")
             {
-
+                AEFuturaForm aEFuturaForm = new AEFuturaForm(_connection, 0, null);
             }
             if (_table == "futura_info")
             {
@@ -96,17 +97,44 @@ namespace FactoryWinForm
 
         private void ToolStripMenuItem_Edit_Click(object sender, EventArgs e)
         {
+            if (dataGridView_Data.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Выберите строку");
+                return;
+            }
+            DataGridViewRow row = dataGridView_Data.SelectedRows[0];
+            int sId = Convert.ToInt32(row.Cells[0].Value);
+
             if (_table == "products")
             {
-                EditProductForm editProductForm = new EditProductForm(_connection, _table);
+                string[] attributes =
+                {
+                    row.Cells[1].Value.ToString(),
+                    row.Cells[2].Value.ToString(),
+                };
+                AEProductForm aeProductForm = new AEProductForm(_connection, sId, attributes);
             }
             if (_table == "customers")
             {
-
+                string[] attributes =
+                {
+                    row.Cells[1].Value.ToString(),
+                    row.Cells[2].Value.ToString(),
+                    row.Cells[3].Value.ToString(),
+                };
+                AECustomers aECustomers = new AECustomers(_connection, sId, attributes);
             }
             if (_table == "futura")
             {
-
+                string[] attributes =
+                {
+                    row.Cells[1].Value.ToString(),
+                    row.Cells[2].Value.ToString(),
+                    row.Cells[3].Value.ToString(),
+                    row.Cells[4].Value.ToString(),
+                    row.Cells[5].Value.ToString(),
+                };
+                AEFuturaForm aEFuturaForm = new AEFuturaForm(_connection, sId, attributes);
             }
             if (_table == "futura_info")
             {
@@ -116,7 +144,20 @@ namespace FactoryWinForm
 
         private void ToolStripMenuItem_Delete_Click(object sender, EventArgs e)
         {
-            // TODO: deleteData();
+            if (dataGridView_Data.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Выберите строку");
+                return;
+            }
+            DataGridViewRow row = dataGridView_Data.SelectedRows[0];
+            int sId = Convert.ToInt32(row.Cells[0].Value);
+
+            deleteData(sId);
+        }
+
+        private void timer_update_Tick(object sender, EventArgs e)
+        {
+            npgsqlAnswer();
         }
     }
 }
