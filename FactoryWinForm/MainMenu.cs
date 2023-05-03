@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,7 +71,20 @@ namespace FactoryWinForm
 
         private void button_export_Click(object sender, EventArgs e)
         {
-
+            // TODO: За период для выбранных клиентов сформировать материальный отчёт по товарам
+            //      положенных к отгрузке, но не отгруженных с указанием количества и сумм
+            string sql = $"SELECT f.id, f.id_futura, p.name, f.quantity, f.price FROM futura_info f, " +
+                $"products p;";
+            DataSet dataSet = new DataSet();
+            NpgsqlConnection connection = new NpgsqlConnection("Server=localhost; Port=5432; User Id=postgres; " +
+                "Password=postpass; Database=sitnikov342");
+            connection.Open();
+            using (NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, connection))
+            {
+                dataAdapter.Fill(dataSet);
+            }
+            connection.Close();
+            ExportToExcell exportToExcell = new ExportToExcell(dataSet.Tables[0]);
         }
     }
 }
