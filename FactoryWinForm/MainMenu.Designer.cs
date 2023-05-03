@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             panel_main = new Panel();
+            button_export = new Button();
             button_reports = new Button();
             button_invoices = new Button();
             button_customers = new Button();
             button_products = new Button();
-            button_export = new Button();
             panel_main.SuspendLayout();
             SuspendLayout();
             // 
@@ -44,68 +44,75 @@
             panel_main.Controls.Add(button_invoices);
             panel_main.Controls.Add(button_customers);
             panel_main.Controls.Add(button_products);
-            panel_main.Location = new Point(12, 11);
+            panel_main.Location = new Point(14, 15);
+            panel_main.Margin = new Padding(3, 4, 3, 4);
             panel_main.Name = "panel_main";
-            panel_main.Size = new Size(210, 238);
+            panel_main.Size = new Size(240, 317);
             panel_main.TabIndex = 1;
+            // 
+            // button_export
+            // 
+            button_export.Location = new Point(62, 234);
+            button_export.Margin = new Padding(3, 4, 3, 4);
+            button_export.Name = "button_export";
+            button_export.Size = new Size(114, 40);
+            button_export.TabIndex = 4;
+            button_export.Text = "Экспорт";
+            button_export.UseVisualStyleBackColor = true;
+            button_export.Click += button_export_Click;
             // 
             // button_reports
             // 
-            button_reports.Location = new Point(54, 151);
+            button_reports.Location = new Point(62, 186);
+            button_reports.Margin = new Padding(3, 4, 3, 4);
             button_reports.Name = "button_reports";
-            button_reports.Size = new Size(100, 30);
-            button_reports.TabIndex = 0;
+            button_reports.Size = new Size(114, 40);
+            button_reports.TabIndex = 3;
             button_reports.Text = "Отчёты";
             button_reports.UseVisualStyleBackColor = true;
             button_reports.Click += button_reports_Click;
             // 
             // button_invoices
             // 
-            button_invoices.Location = new Point(54, 115);
+            button_invoices.Location = new Point(62, 138);
+            button_invoices.Margin = new Padding(3, 4, 3, 4);
             button_invoices.Name = "button_invoices";
-            button_invoices.Size = new Size(100, 30);
-            button_invoices.TabIndex = 0;
+            button_invoices.Size = new Size(114, 40);
+            button_invoices.TabIndex = 2;
             button_invoices.Text = "Накладные";
             button_invoices.UseVisualStyleBackColor = true;
             button_invoices.Click += button_invoices_Click;
             // 
             // button_customers
             // 
-            button_customers.Location = new Point(54, 79);
+            button_customers.Location = new Point(62, 90);
+            button_customers.Margin = new Padding(3, 4, 3, 4);
             button_customers.Name = "button_customers";
-            button_customers.Size = new Size(100, 30);
-            button_customers.TabIndex = 0;
+            button_customers.Size = new Size(114, 40);
+            button_customers.TabIndex = 1;
             button_customers.Text = "Заказщики";
             button_customers.UseVisualStyleBackColor = true;
             button_customers.Click += button_customers_Click;
             // 
             // button_products
             // 
-            button_products.Location = new Point(54, 43);
+            button_products.Location = new Point(62, 42);
+            button_products.Margin = new Padding(3, 4, 3, 4);
             button_products.Name = "button_products";
-            button_products.Size = new Size(100, 30);
+            button_products.Size = new Size(114, 40);
             button_products.TabIndex = 0;
             button_products.Text = "Товары";
             button_products.UseVisualStyleBackColor = true;
             button_products.Click += button_products_Click;
             // 
-            // button_export
-            // 
-            button_export.Location = new Point(54, 187);
-            button_export.Name = "button_export";
-            button_export.Size = new Size(100, 30);
-            button_export.TabIndex = 1;
-            button_export.Text = "Экспорт";
-            button_export.UseVisualStyleBackColor = true;
-            button_export.Click += button_export_Click;
-            // 
             // MainMenu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(234, 261);
+            ClientSize = new Size(267, 348);
             Controls.Add(panel_main);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Главное меню";

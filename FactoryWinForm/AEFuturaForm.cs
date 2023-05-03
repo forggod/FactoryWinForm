@@ -1,13 +1,5 @@
 ﻿using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FactoryWinForm
 {
@@ -29,15 +21,16 @@ namespace FactoryWinForm
                 this.Text = "Изменить запись";
                 button_action.Text = "Изменить";
                 textBox_name.Text = attributes[0];
-                string[] dateSt = attributes[1].Split('-');
+                string[] dateSt = attributes[1].Split('.');
+                dateSt[2] = dateSt[2].Split(' ')[0];
                 dateTimePicker_date.Value = new
-                    DateTime(Convert.ToInt32(dateSt[0]), Convert.ToInt32(dateSt[1]), Convert.ToInt32(dateSt[2]));
-                if (attributes[4] == "Наличные")
+                    DateTime(Convert.ToInt32(dateSt[2]), Convert.ToInt32(dateSt[1]), Convert.ToInt32(dateSt[0]));
+                if (attributes[2] == "Наличные")
                     domainUpDown_paymentType.SelectedIndex = 0;
                 else
                     domainUpDown_paymentType.SelectedIndex = 1;
-                checkBox_prepayment.Checked = Convert.ToBoolean(attributes[5]);
-                checkBox_sent.Checked = Convert.ToBoolean(attributes[6]);
+                checkBox_prepayment.Checked = Convert.ToBoolean(attributes[3]);
+                checkBox_sent.Checked = Convert.ToBoolean(attributes[4]);
             }
             this.Show();
             _connection = connection;

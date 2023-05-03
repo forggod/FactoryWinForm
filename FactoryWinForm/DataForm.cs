@@ -32,7 +32,7 @@ namespace FactoryWinForm
 
         private void updateDateGridView()
         {
-            npgsqlAnswer();
+            // npgsqlAnswer();
         }
 
         private void npgsqlAnswer()
@@ -91,13 +91,13 @@ namespace FactoryWinForm
             }
             if (_table == "futura_info")
             {
-
+                AEFuturaInfoForm aEFuturaInfoForm = new AEFuturaInfoForm(_connection, 0, null);
             }
         }
 
         private void ToolStripMenuItem_Edit_Click(object sender, EventArgs e)
         {
-            if (dataGridView_Data.SelectedRows.Count < 1)
+            if (dataGridView_Data.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Выберите строку");
                 return;
@@ -138,7 +138,14 @@ namespace FactoryWinForm
             }
             if (_table == "futura_info")
             {
-
+                string[] attributes =
+                {
+                    row.Cells[1].Value.ToString(),
+                    row.Cells[2].Value.ToString(),
+                    row.Cells[3].Value.ToString(),
+                    row.Cells[4].Value.ToString(),
+                };
+                AEFuturaInfoForm aEFuturaInfoForm = new AEFuturaInfoForm(_connection, sId, attributes);
             }
         }
 
@@ -157,7 +164,7 @@ namespace FactoryWinForm
 
         private void timer_update_Tick(object sender, EventArgs e)
         {
-            npgsqlAnswer();
+            updateDateGridView();
         }
     }
 }
