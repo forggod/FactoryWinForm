@@ -41,6 +41,7 @@
             // 
             dataGridView_clients.AllowUserToAddRows = false;
             dataGridView_clients.AllowUserToDeleteRows = false;
+            dataGridView_clients.AllowUserToResizeRows = false;
             dataGridView_clients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_clients.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView_clients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -50,6 +51,7 @@
             dataGridView_clients.ReadOnly = true;
             dataGridView_clients.RowHeadersWidth = 51;
             dataGridView_clients.RowTemplate.Height = 29;
+            dataGridView_clients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView_clients.Size = new Size(377, 450);
             dataGridView_clients.TabIndex = 0;
             // 
