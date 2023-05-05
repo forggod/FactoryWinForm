@@ -104,7 +104,7 @@ namespace FactoryWinForm
                 "Количество",
                 "Цена",
             };
-            if (table.Rows.Count < 2)
+            if (table.Rows.Count < 1)
             {
                 MessageBox.Show("Записей не найдено");
                 return;
