@@ -71,8 +71,6 @@ namespace FactoryWinForm
 
         private void button_export_Click(object sender, EventArgs e)
         {
-            // TODO: За период для выбранных клиентов сформировать материальный отчёт по товарам
-            //      положенных к отгрузке, но не отгруженных с указанием количества и сумм
             string sql = $"SELECT f.id, f.id_futura, p.name, f.quantity, f.price FROM futura_info f, " +
                 $"products p;";
             DataSet dataSet = new DataSet();

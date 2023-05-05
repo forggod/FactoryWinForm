@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel_address = new Panel();
+            numericUpDown_totalSum = new NumericUpDown();
+            label_totalSum = new Label();
             label_paymentType = new Label();
             domainUpDown_paymentType = new DomainUpDown();
             dateTimePicker_date = new DateTimePicker();
@@ -40,10 +42,13 @@
             textBox_name = new TextBox();
             label_name = new Label();
             panel_address.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_totalSum).BeginInit();
             SuspendLayout();
             // 
             // panel_address
             // 
+            panel_address.Controls.Add(numericUpDown_totalSum);
+            panel_address.Controls.Add(label_totalSum);
             panel_address.Controls.Add(label_paymentType);
             panel_address.Controls.Add(domainUpDown_paymentType);
             panel_address.Controls.Add(dateTimePicker_date);
@@ -57,13 +62,30 @@
             panel_address.Location = new Point(12, 13);
             panel_address.Margin = new Padding(3, 4, 3, 4);
             panel_address.Name = "panel_address";
-            panel_address.Size = new Size(411, 316);
+            panel_address.Size = new Size(411, 416);
             panel_address.TabIndex = 4;
+            // 
+            // numericUpDown_totalSum
+            // 
+            numericUpDown_totalSum.Location = new Point(201, 254);
+            numericUpDown_totalSum.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
+            numericUpDown_totalSum.Name = "numericUpDown_totalSum";
+            numericUpDown_totalSum.Size = new Size(150, 27);
+            numericUpDown_totalSum.TabIndex = 5;
+            // 
+            // label_totalSum
+            // 
+            label_totalSum.AutoSize = true;
+            label_totalSum.Location = new Point(32, 256);
+            label_totalSum.Name = "label_totalSum";
+            label_totalSum.Size = new Size(135, 20);
+            label_totalSum.TabIndex = 9;
+            label_totalSum.Text = "Внесённая сумма:";
             // 
             // label_paymentType
             // 
             label_paymentType.AutoSize = true;
-            label_paymentType.Location = new Point(33, 157);
+            label_paymentType.Location = new Point(201, 160);
             label_paymentType.Name = "label_paymentType";
             label_paymentType.Size = new Size(90, 20);
             label_paymentType.TabIndex = 8;
@@ -73,10 +95,10 @@
             // 
             domainUpDown_paymentType.Items.Add("Наличные");
             domainUpDown_paymentType.Items.Add("Внесение в кассу");
-            domainUpDown_paymentType.Location = new Point(33, 194);
+            domainUpDown_paymentType.Location = new Point(201, 197);
             domainUpDown_paymentType.Name = "domainUpDown_paymentType";
             domainUpDown_paymentType.Size = new Size(150, 27);
-            domainUpDown_paymentType.TabIndex = 2;
+            domainUpDown_paymentType.TabIndex = 4;
             // 
             // dateTimePicker_date
             // 
@@ -88,20 +110,20 @@
             // checkBox_sent
             // 
             checkBox_sent.AutoSize = true;
-            checkBox_sent.Location = new Point(238, 197);
+            checkBox_sent.Location = new Point(44, 200);
             checkBox_sent.Name = "checkBox_sent";
             checkBox_sent.Size = new Size(123, 24);
-            checkBox_sent.TabIndex = 4;
+            checkBox_sent.TabIndex = 3;
             checkBox_sent.Text = "отправленно";
             checkBox_sent.UseVisualStyleBackColor = true;
             // 
             // checkBox_prepayment
             // 
             checkBox_prepayment.AutoSize = true;
-            checkBox_prepayment.Location = new Point(238, 156);
+            checkBox_prepayment.Location = new Point(44, 159);
             checkBox_prepayment.Name = "checkBox_prepayment";
             checkBox_prepayment.Size = new Size(113, 24);
-            checkBox_prepayment.TabIndex = 3;
+            checkBox_prepayment.TabIndex = 2;
             checkBox_prepayment.Text = "предоплата";
             checkBox_prepayment.UseVisualStyleBackColor = true;
             // 
@@ -116,22 +138,22 @@
             // 
             // button_cancel
             // 
-            button_cancel.Location = new Point(261, 241);
+            button_cancel.Location = new Point(261, 345);
             button_cancel.Margin = new Padding(3, 4, 3, 4);
             button_cancel.Name = "button_cancel";
             button_cancel.Size = new Size(114, 40);
-            button_cancel.TabIndex = 6;
+            button_cancel.TabIndex = 7;
             button_cancel.Text = "Отмена";
             button_cancel.UseVisualStyleBackColor = true;
             button_cancel.Click += button_cancel_Click;
             // 
             // button_action
             // 
-            button_action.Location = new Point(33, 241);
+            button_action.Location = new Point(33, 345);
             button_action.Margin = new Padding(3, 4, 3, 4);
             button_action.Name = "button_action";
             button_action.Size = new Size(114, 40);
-            button_action.TabIndex = 5;
+            button_action.TabIndex = 6;
             button_action.Text = "Добавить";
             button_action.UseVisualStyleBackColor = true;
             button_action.Click += button_action_Click;
@@ -158,7 +180,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(439, 348);
+            ClientSize = new Size(439, 448);
             Controls.Add(panel_address);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -166,6 +188,7 @@
             Text = "AEFuturaForm";
             panel_address.ResumeLayout(false);
             panel_address.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_totalSum).EndInit();
             ResumeLayout(false);
         }
 
@@ -182,5 +205,7 @@
         private DateTimePicker dateTimePicker_date;
         private CheckBox checkBox_sent;
         private CheckBox checkBox_prepayment;
+        private Label label_totalSum;
+        private NumericUpDown numericUpDown_totalSum;
     }
 }

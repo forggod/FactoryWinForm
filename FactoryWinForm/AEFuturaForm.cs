@@ -31,12 +31,14 @@ namespace FactoryWinForm
                     domainUpDown_paymentType.SelectedIndex = 1;
                 checkBox_prepayment.Checked = Convert.ToBoolean(attributes[3]);
                 checkBox_sent.Checked = Convert.ToBoolean(attributes[4]);
+                if (attributes[5] != "")
+                    numericUpDown_totalSum.Value = Convert.ToInt32(attributes[5]);
             }
             this.Show();
             _connection = connection;
             _id = id;
         }
-        private void addNote(string name, string date, string paymentType, string prepayment, string sent)
+        private void addNote(string name, string date, string paymentType, string prepayment, string sent, int sum)
         {
             _connection.Open();
             int idCustomer = searchCustomer(name);
@@ -45,15 +47,15 @@ namespace FactoryWinForm
             else
             {
                 using (NpgsqlCommand npgsqlCommand = new
-                    NpgsqlCommand($"INSERT INTO futura (id_customer, date, payment_type, prepayment, sent)" +
-                    $" VALUES ('{idCustomer}', '{date}', '{paymentType}', '{prepayment}', '{sent}')", _connection))
+                    NpgsqlCommand($"INSERT INTO futura (id_customer, date, payment_type, prepayment, sent, total_sum)" +
+                    $" VALUES ('{idCustomer}', '{date}', '{paymentType}', '{prepayment}', '{sent}, '{sum}')", _connection))
                 {
                     npgsqlCommand.ExecuteNonQuery();
                 }
             }
             _connection.Close();
         }
-        private void editNote(string name, string date, string paymentType, string prepayment, string sent)
+        private void editNote(string name, string date, string paymentType, string prepayment, string sent, int sum)
         {
             _connection.Open();
             int idCustomer = searchCustomer(name);
@@ -63,7 +65,7 @@ namespace FactoryWinForm
             {
                 using (NpgsqlCommand npgsqlCommand = new
                     NpgsqlCommand($"UPDATE futura SET id_customer = '{idCustomer}', date = '{date}', payment_type = '{paymentType}', " +
-                    $"prepayment = '{prepayment}', sent = '{sent}' WHERE id = {_id}", _connection))
+                    $"prepayment = '{prepayment}', sent = '{sent}', total_sum = '{sum}' WHERE id = {_id}", _connection))
                 {
                     npgsqlCommand.ExecuteNonQuery();
                 }
@@ -78,6 +80,7 @@ namespace FactoryWinForm
             string? paymentType = domainUpDown_paymentType.SelectedItem.ToString();
             string prepayment = checkBox_prepayment.Checked.ToString();
             string sent = checkBox_sent.Checked.ToString();
+            int sum = Convert.ToInt32(numericUpDown_totalSum.Value);
             if (name == "")
             {
                 MessageBox.Show("Заполните поле заказщик");
@@ -90,11 +93,11 @@ namespace FactoryWinForm
             }
             if (_id == 0)
             {
-                addNote(name, date, paymentType, prepayment, sent);
+                addNote(name, date, paymentType, prepayment, sent, sum);
             }
             else
             {
-                editNote(name, date, paymentType, prepayment, sent);
+                editNote(name, date, paymentType, prepayment, sent, sum);
             }
             this.Close();
         }

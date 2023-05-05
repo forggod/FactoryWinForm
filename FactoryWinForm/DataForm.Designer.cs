@@ -44,6 +44,9 @@
             // 
             dataGridView_Data.AllowUserToAddRows = false;
             dataGridView_Data.AllowUserToDeleteRows = false;
+            dataGridView_Data.AllowUserToResizeRows = false;
+            dataGridView_Data.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_Data.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView_Data.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_Data.Dock = DockStyle.Fill;
             dataGridView_Data.Location = new Point(0, 30);
@@ -53,6 +56,7 @@
             dataGridView_Data.ReadOnly = true;
             dataGridView_Data.RowHeadersWidth = 51;
             dataGridView_Data.RowTemplate.Height = 25;
+            dataGridView_Data.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView_Data.Size = new Size(914, 570);
             dataGridView_Data.TabIndex = 0;
             // 

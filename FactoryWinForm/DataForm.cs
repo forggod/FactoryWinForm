@@ -22,6 +22,14 @@ namespace FactoryWinForm
             initConnection();
             this.Show();
             timer_update.Enabled = true;
+            string formName = "Товары";
+            if (table == "customers")
+                formName = "Заказщики";
+            if (table == "futura")
+                formName = "Накладные";
+            if (table == "futura_info")
+                formName = "Отчёты";
+            this.Text = formName;
         }
 
         private void initConnection()
@@ -43,12 +51,14 @@ namespace FactoryWinForm
 
             if (_table == "futura")
             {
-                sql = $"SELECT f.id, c.name as customer, f.date, f.payment_type, f.prepayment, f.sent, f.total_sum FROM futura f, customers c;";
+                sql = $"SELECT f.id, c.name, f.date, f.payment_type, f.prepayment, f.sent, f.total_sum FROM futura f " +
+                    $"JOIN customers c ON f.id_customer = c.id;";
 
             }
             else if (_table == "futura_info")
             {
-                sql = $"SELECT f.id, f.id_futura, p.name, f.quantity, f.price FROM futura_info f, products p;";
+                sql = $"SELECT f.id, f.id_futura, p.name, f.quantity, f.price FROM futura_info f " +
+                    $"JOIN products p ON f.id_product = p.id;";
             }
 
             using (NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, _connection))
@@ -83,15 +93,18 @@ namespace FactoryWinForm
             }
             if (_table == "customers")
             {
-                AECustomers aECustomers = new AECustomers(_connection, 0, null);
+                AECustomers aeCustomers = new AECustomers(_connection, 0, null);
+                aeCustomers.Name = "Заказщики";
             }
             if (_table == "futura")
             {
-                AEFuturaForm aEFuturaForm = new AEFuturaForm(_connection, 0, null);
+                AEFuturaForm aeFuturaForm = new AEFuturaForm(_connection, 0, null);
+                aeFuturaForm.Name = "Накладная";
             }
             if (_table == "futura_info")
             {
-                AEFuturaInfoForm aEFuturaInfoForm = new AEFuturaInfoForm(_connection, 0, null);
+                AEFuturaInfoForm aeFuturaInfoForm = new AEFuturaInfoForm(_connection, 0, null);
+                aeFuturaInfoForm.Name = "Отчёт";
             }
         }
 
@@ -113,6 +126,7 @@ namespace FactoryWinForm
                     row.Cells[2].Value.ToString(),
                 };
                 AEProductForm aeProductForm = new AEProductForm(_connection, sId, attributes);
+                aeProductForm.Name = "Товары";
             }
             if (_table == "customers")
             {
@@ -122,7 +136,8 @@ namespace FactoryWinForm
                     row.Cells[2].Value.ToString(),
                     row.Cells[3].Value.ToString(),
                 };
-                AECustomers aECustomers = new AECustomers(_connection, sId, attributes);
+                AECustomers aeCustomers = new AECustomers(_connection, sId, attributes);
+                aeCustomers.Name = "Заказщики";
             }
             if (_table == "futura")
             {
@@ -133,8 +148,10 @@ namespace FactoryWinForm
                     row.Cells[3].Value.ToString(),
                     row.Cells[4].Value.ToString(),
                     row.Cells[5].Value.ToString(),
+                    row.Cells[6].Value.ToString(),
                 };
-                AEFuturaForm aEFuturaForm = new AEFuturaForm(_connection, sId, attributes);
+                AEFuturaForm aeFuturaForm = new AEFuturaForm(_connection, sId, attributes);
+                aeFuturaForm.Name = "Накладная";
             }
             if (_table == "futura_info")
             {
@@ -145,7 +162,8 @@ namespace FactoryWinForm
                     row.Cells[3].Value.ToString(),
                     row.Cells[4].Value.ToString(),
                 };
-                AEFuturaInfoForm aEFuturaInfoForm = new AEFuturaInfoForm(_connection, sId, attributes);
+                AEFuturaInfoForm aeFuturaInfoForm = new AEFuturaInfoForm(_connection, sId, attributes);
+                aeFuturaInfoForm.Name = "Отчёт";
             }
         }
 
