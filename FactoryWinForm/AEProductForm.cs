@@ -6,9 +6,9 @@ namespace FactoryWinForm
     {
         private NpgsqlConnection _connection;
         private int _id;
-        public AEProductForm(NpgsqlConnection connection, int id, string?[] attributes)
+        public AEProductForm(string con, int id, string?[] attributes)
         {
-            _connection = connection;
+            _connection = new NpgsqlConnection(con);
             _id = id;
             InitializeComponent();
 

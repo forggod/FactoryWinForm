@@ -89,21 +89,21 @@ namespace FactoryWinForm
         {
             if (_table == "products")
             {
-                AEProductForm aeProductForm = new AEProductForm(_connection, 0, null);
+                AEProductForm aeProductForm = new AEProductForm("Server=localhost; Port=5432; User Id=postgres; Password=postpass; Database=sitnikov342", 0, null);
             }
             if (_table == "customers")
             {
-                AECustomers aeCustomers = new AECustomers(_connection, 0, null);
+                AECustomers aeCustomers = new AECustomers("Server=localhost; Port=5432; User Id=postgres; Password=postpass; Database=sitnikov342", 0, null);
                 aeCustomers.Name = "Заказщики";
             }
             if (_table == "futura")
             {
-                AEFuturaForm aeFuturaForm = new AEFuturaForm(_connection, 0, null);
+                AEFuturaForm aeFuturaForm = new AEFuturaForm("Server=localhost; Port=5432; User Id=postgres; Password=postpass; Database=sitnikov342", 0, null);
                 aeFuturaForm.Name = "Накладная";
             }
             if (_table == "futura_info")
             {
-                AEFuturaInfoForm aeFuturaInfoForm = new AEFuturaInfoForm(_connection, 0, null);
+                AEFuturaInfoForm aeFuturaInfoForm = new AEFuturaInfoForm("Server=localhost; Port=5432; User Id=postgres; Password=postpass; Database=sitnikov342", 0, null);
                 aeFuturaInfoForm.Name = "Отчёт";
             }
         }
@@ -125,7 +125,7 @@ namespace FactoryWinForm
                     row.Cells[1].Value.ToString(),
                     row.Cells[2].Value.ToString(),
                 };
-                AEProductForm aeProductForm = new AEProductForm(_connection, sId, attributes);
+                AEProductForm aeProductForm = new AEProductForm("Server=localhost; Port=5432; User Id=postgres; Password=postpass; Database=sitnikov342", sId, attributes);
                 aeProductForm.Name = "Товары";
             }
             if (_table == "customers")
@@ -136,7 +136,7 @@ namespace FactoryWinForm
                     row.Cells[2].Value.ToString(),
                     row.Cells[3].Value.ToString(),
                 };
-                AECustomers aeCustomers = new AECustomers(_connection, sId, attributes);
+                AECustomers aeCustomers = new AECustomers("Server=localhost; Port=5432; User Id=postgres; Password=postpass; Database=sitnikov342", sId, attributes);
                 aeCustomers.Name = "Заказщики";
             }
             if (_table == "futura")
@@ -148,9 +148,8 @@ namespace FactoryWinForm
                     row.Cells[3].Value.ToString(),
                     row.Cells[4].Value.ToString(),
                     row.Cells[5].Value.ToString(),
-                    row.Cells[6].Value.ToString(),
                 };
-                AEFuturaForm aeFuturaForm = new AEFuturaForm(_connection, sId, attributes);
+                AEFuturaForm aeFuturaForm = new AEFuturaForm("Server=localhost; Port=5432; User Id=postgres; Password=postpass; Database=sitnikov342", sId, attributes);
                 aeFuturaForm.Name = "Накладная";
             }
             if (_table == "futura_info")
@@ -162,7 +161,7 @@ namespace FactoryWinForm
                     row.Cells[3].Value.ToString(),
                     row.Cells[4].Value.ToString(),
                 };
-                AEFuturaInfoForm aeFuturaInfoForm = new AEFuturaInfoForm(_connection, sId, attributes);
+                AEFuturaInfoForm aeFuturaInfoForm = new AEFuturaInfoForm("Server=localhost; Port=5432; User Id=postgres; Password=postpass; Database=sitnikov342", sId, attributes);
                 aeFuturaInfoForm.Name = "Отчёт";
             }
         }

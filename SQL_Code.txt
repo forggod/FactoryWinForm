@@ -55,4 +55,13 @@ SELECT f.id, c.name as customer, f.date, f.payment_type, f.prepayment, f.sent, f
 INSERT INTO futura_info (id_futura, id_product, quantity, price) VALUES (1, 1, 120, 56000);
 SELECT f.id, f.id_futura, p.name, f.quantity, f.price FROM futura_info f, products p;
 
-DELETE FROM products WHERE name = 'sprite';
+
+CREATE FUNCTION upd_futura() RETURNS TRIGGER AS $upd_futura$
+	BEGIN
+		UPDATE futura SET total_sum = NEW.quantity * NEW.price
+			WHERE id = NEW.id_futura;
+	END;
+$upd_futura$ LANGUAGE plpgsql;
+
+CREATE TRIGGER upd_futura BEFORE INSERT OR UPDATE ON futura_info 
+	FOR EACH ROW EXECUTE PROCEDURE upd_futura();

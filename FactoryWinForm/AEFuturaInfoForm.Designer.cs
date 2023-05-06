@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            numericUpDown_totalSum = new NumericUpDown();
+            label_totalSum = new Label();
             textBox_product = new TextBox();
             label_product = new Label();
             numericUpDown_nounce = new NumericUpDown();
@@ -38,11 +40,14 @@
             textBox_futura = new TextBox();
             label_futura = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_totalSum).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown_nounce).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(numericUpDown_totalSum);
+            panel1.Controls.Add(label_totalSum);
             panel1.Controls.Add(textBox_product);
             panel1.Controls.Add(label_product);
             panel1.Controls.Add(numericUpDown_nounce);
@@ -56,6 +61,23 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(411, 316);
             panel1.TabIndex = 2;
+            // 
+            // numericUpDown_totalSum
+            // 
+            numericUpDown_totalSum.Location = new Point(224, 190);
+            numericUpDown_totalSum.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
+            numericUpDown_totalSum.Name = "numericUpDown_totalSum";
+            numericUpDown_totalSum.Size = new Size(150, 27);
+            numericUpDown_totalSum.TabIndex = 10;
+            // 
+            // label_totalSum
+            // 
+            label_totalSum.AutoSize = true;
+            label_totalSum.Location = new Point(36, 192);
+            label_totalSum.Name = "label_totalSum";
+            label_totalSum.Size = new Size(48, 20);
+            label_totalSum.TabIndex = 11;
+            label_totalSum.Text = "Цена:";
             // 
             // textBox_product
             // 
@@ -85,7 +107,7 @@
             // 
             // button_cancel
             // 
-            button_cancel.Location = new Point(261, 213);
+            button_cancel.Location = new Point(262, 248);
             button_cancel.Margin = new Padding(3, 4, 3, 4);
             button_cancel.Name = "button_cancel";
             button_cancel.Size = new Size(114, 40);
@@ -96,7 +118,7 @@
             // 
             // button_action
             // 
-            button_action.Location = new Point(35, 213);
+            button_action.Location = new Point(36, 248);
             button_action.Margin = new Padding(3, 4, 3, 4);
             button_action.Name = "button_action";
             button_action.Size = new Size(114, 40);
@@ -141,6 +163,7 @@
             Text = "AEFuturaInfoForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_totalSum).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown_nounce).EndInit();
             ResumeLayout(false);
         }
@@ -156,5 +179,7 @@
         private Label label_nounce;
         private TextBox textBox_futura;
         private Label label_futura;
+        private NumericUpDown numericUpDown_totalSum;
+        private Label label_totalSum;
     }
 }

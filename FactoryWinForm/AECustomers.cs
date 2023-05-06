@@ -6,8 +6,9 @@ namespace FactoryWinForm
     {
         private NpgsqlConnection _connection;
         private int _id;
-        public AECustomers(NpgsqlConnection connection, int id, string?[] attributes)
+        public AECustomers(string con, int id, string?[] attributes)
         {
+            _connection = new NpgsqlConnection(con);
             InitializeComponent();
             if (id < 1)
             {
@@ -23,7 +24,6 @@ namespace FactoryWinForm
                 textBox_phone.Text = attributes[2];
             }
             this.Show();
-            _connection = connection;
             _id = id;
         }
         private void addNote(string name, string adress, string phone)

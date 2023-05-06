@@ -16,9 +16,9 @@ namespace FactoryWinForm
     {
         NpgsqlConnection _connection;
         private int _id;
-        public AEFuturaInfoForm(NpgsqlConnection connection, int id, string?[] attributes)
+        public AEFuturaInfoForm(string conn, int id, string?[] attributes)
         {
-            _connection = connection;
+            _connection = new NpgsqlConnection(conn);
             _id = id;
 
             InitializeComponent();
@@ -36,10 +36,12 @@ namespace FactoryWinForm
                 textBox_futura.Text = attributes[0];
                 textBox_product.Text = attributes[1];
                 numericUpDown_nounce.Value = Convert.ToInt32(attributes[2]);
+                if (attributes[5] != "")
+                    numericUpDown_totalSum.Value = Convert.ToInt32(attributes[5]);
             }
             this.Show();
         }
-        private bool addNote(string futura, string product, int nounce)
+        private bool addNote(string futura, string product, int nounce, int sum)
         {
             _connection.Open();
             int idFutura = searchFutura(futura);
@@ -57,8 +59,8 @@ namespace FactoryWinForm
             else
             {
                 using (NpgsqlCommand npgsqlCommand = new
-                    NpgsqlCommand($"INSERT INTO futura_info (id_futura, id_product, quantity) " +
-                    $"VALUES ('{idFutura}', '{idProduct}', '{nounce}')", _connection))
+                    NpgsqlCommand($"INSERT INTO futura_info (id_futura, id_product, quantity, price) " +
+                    $"VALUES ('{idFutura}', '{idProduct}', '{nounce}', '{sum}')", _connection))
                 {
                     npgsqlCommand.ExecuteNonQuery();
                 }
@@ -66,7 +68,7 @@ namespace FactoryWinForm
             _connection.Close();
             return true;
         }
-        private bool editNote(string futura, string product, int nounce)
+        private bool editNote(string futura, string product, int nounce, int sum)
         {
             _connection.Open();
             int idFutura = searchFutura(futura);
@@ -85,7 +87,7 @@ namespace FactoryWinForm
             {
                 using (NpgsqlCommand npgsqlCommand = new
                     NpgsqlCommand($"UPDATE futura_info SET id_futura = '{idFutura}', id_product = '{idProduct}', " +
-                    $"quantity = '{nounce}';", _connection))
+                    $"quantity = '{nounce}', price = '{sum}';", _connection))
                 {
                     npgsqlCommand.ExecuteNonQuery();
                 }
@@ -98,6 +100,7 @@ namespace FactoryWinForm
             string futura = textBox_futura.Text;
             string product = textBox_product.Text;
             int nounce = Convert.ToInt32(numericUpDown_nounce.Value);
+            int sum = Convert.ToInt32(numericUpDown_totalSum.Value);
             if (futura == "")
             {
                 MessageBox.Show("Заполните поле накладная");
@@ -110,12 +113,12 @@ namespace FactoryWinForm
             }
             if (_id == 0)
             {
-                if (!addNote(futura, product, nounce))
+                if (!addNote(futura, product, nounce, sum))
                     return;
             }
             else
             {
-                if (!editNote(futura, product, nounce))
+                if (!editNote(futura, product, nounce, sum))
                     return;
             }
             this.Close();
