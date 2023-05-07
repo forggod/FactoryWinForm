@@ -49,6 +49,10 @@ SELECT * FROM products;
 INSERT INTO customers (name, adress, phone) VALUES ('Ivan', 'Ivanovskoe', '898899342');
 SELECT * FROM customers;
 
+SELECT * FROM futura;
+
+SELECT * FROM futura_info;
+
 INSERT INTO futura (id_customer, date, payment_type, prepayment, sent, total_sum) VALUES (1, '2023-4-27', TRUE, TRUE, FALSE, 56000);
 SELECT f.id, c.name as customer, f.date, f.payment_type, f.prepayment, f.sent, f.total_sum FROM futura f, customers c;
 
@@ -60,8 +64,14 @@ CREATE FUNCTION upd_futura() RETURNS TRIGGER AS $upd_futura$
 	BEGIN
 		UPDATE futura SET total_sum = NEW.quantity * NEW.price
 			WHERE id = NEW.id_futura;
+			
+		RETURN NEW;
 	END;
 $upd_futura$ LANGUAGE plpgsql;
 
 CREATE TRIGGER upd_futura BEFORE INSERT OR UPDATE ON futura_info 
 	FOR EACH ROW EXECUTE PROCEDURE upd_futura();
+
+INSERT INTO futura (id_customer, date, payment_type, prepayment, sent)  VALUES (2, '2023-05-01','Внесение в кассу', true, true);
+
+INSERT INTO futura_info (id_futura, id_product, quantity, price) VALUES (8, 6, 800, 40);

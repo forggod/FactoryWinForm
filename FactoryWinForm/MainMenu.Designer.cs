@@ -30,7 +30,6 @@
         {
             panel_main = new Panel();
             button_export = new Button();
-            button_reports = new Button();
             button_invoices = new Button();
             button_customers = new Button();
             button_products = new Button();
@@ -40,19 +39,18 @@
             // panel_main
             // 
             panel_main.Controls.Add(button_export);
-            panel_main.Controls.Add(button_reports);
             panel_main.Controls.Add(button_invoices);
             panel_main.Controls.Add(button_customers);
             panel_main.Controls.Add(button_products);
             panel_main.Location = new Point(14, 15);
             panel_main.Margin = new Padding(3, 4, 3, 4);
             panel_main.Name = "panel_main";
-            panel_main.Size = new Size(240, 317);
+            panel_main.Size = new Size(240, 280);
             panel_main.TabIndex = 1;
             // 
             // button_export
             // 
-            button_export.Location = new Point(62, 234);
+            button_export.Location = new Point(62, 186);
             button_export.Margin = new Padding(3, 4, 3, 4);
             button_export.Name = "button_export";
             button_export.Size = new Size(114, 40);
@@ -60,17 +58,6 @@
             button_export.Text = "Экспорт";
             button_export.UseVisualStyleBackColor = true;
             button_export.Click += button_export_Click;
-            // 
-            // button_reports
-            // 
-            button_reports.Location = new Point(62, 186);
-            button_reports.Margin = new Padding(3, 4, 3, 4);
-            button_reports.Name = "button_reports";
-            button_reports.Size = new Size(114, 40);
-            button_reports.TabIndex = 3;
-            button_reports.Text = "Отчёты";
-            button_reports.UseVisualStyleBackColor = true;
-            button_reports.Click += button_reports_Click;
             // 
             // button_invoices
             // 
@@ -109,7 +96,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(267, 348);
+            ClientSize = new Size(267, 308);
             Controls.Add(panel_main);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
@@ -123,7 +110,6 @@
         #endregion
 
         private Panel panel_main;
-        private Button button_reports;
         private Button button_invoices;
         private Button button_customers;
         private Button button_products;

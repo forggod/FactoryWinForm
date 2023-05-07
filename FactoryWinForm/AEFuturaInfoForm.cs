@@ -35,9 +35,9 @@ namespace FactoryWinForm
                 button_action.Text = "Изменить";
                 textBox_futura.Text = attributes[0];
                 textBox_product.Text = attributes[1];
-                numericUpDown_nounce.Value = Convert.ToInt32(attributes[2]);
-                if (attributes[5] != "")
-                    numericUpDown_totalSum.Value = Convert.ToInt32(attributes[5]);
+                numericUpDown_nounce.Value = Convert.ToInt32(attributes[3]);
+                if (attributes[4] != "")
+                    numericUpDown_totalSum.Value = Convert.ToInt32(attributes[4].Substring(0, attributes[4].Length - 3));
             }
             this.Show();
         }

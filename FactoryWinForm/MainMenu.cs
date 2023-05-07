@@ -52,21 +52,12 @@ namespace FactoryWinForm
                 "Предоплата",
                 "Отгружено",
                 "Сумма",
-            };
-            DataForm futuraDataForm = new DataForm(tableName, tableFields);
-        }
-
-        private void button_reports_Click(object sender, EventArgs e)
-        {
-            string tableName = "futura_info";
-            string[] tableFields =
-            {
                 "Номер накладной",
                 "Товар",
                 "Кол-во",
                 "Цена",
             };
-            DataForm futurainfoDataForm = new DataForm(tableName, tableFields);
+            DataForm futuraDataForm = new DataForm(tableName, tableFields);
         }
 
         private void button_export_Click(object sender, EventArgs e)
