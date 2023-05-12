@@ -1,14 +1,5 @@
 ﻿using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FactoryWinForm
 {
@@ -23,6 +14,8 @@ namespace FactoryWinForm
 
             InitializeComponent();
 
+            comboBoxAdd();
+
             if (id == 0)
             {
                 this.Text = "Добавить запись";
@@ -33,8 +26,8 @@ namespace FactoryWinForm
             {
                 this.Text = "Изменить запись";
                 button_action.Text = "Изменить";
-                textBox_futura.Text = attributes[0];
-                textBox_product.Text = attributes[1];
+                comboBox_futura.SelectedItem = attributes[1];
+                textBox_product.Text = attributes[2];
                 numericUpDown_nounce.Value = Convert.ToInt32(attributes[3]);
                 if (attributes[4] != "")
                     numericUpDown_totalSum.Value = Convert.ToInt32(attributes[4].Substring(0, attributes[4].Length - 3));
@@ -97,7 +90,7 @@ namespace FactoryWinForm
         }
         private void button_action_Click(object sender, EventArgs e)
         {
-            string futura = textBox_futura.Text;
+            string futura = comboBox_futura.SelectedItem.ToString();
             string product = textBox_product.Text;
             int nounce = Convert.ToInt32(numericUpDown_nounce.Value);
             int sum = Convert.ToInt32(numericUpDown_totalSum.Value);
@@ -150,6 +143,19 @@ namespace FactoryWinForm
             if (dataSet.Tables[0].Rows.Count == 0)
                 return 0;
             return Convert.ToInt32(dataSet.Tables[0].Rows[0].ItemArray[0]);
+        }
+        private void comboBoxAdd()
+        {
+            DataSet dataSet = new DataSet();
+            using (NpgsqlDataAdapter dataAdapter = new
+                NpgsqlDataAdapter($"SELECT id FROM futura;", _connection))
+            {
+                dataAdapter.Fill(dataSet);
+            }
+            for (int i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+            {
+                comboBox_futura.Items.Add(dataSet.Tables[0].Rows[i].ItemArray[0].ToString());
+            }
         }
     }
 }

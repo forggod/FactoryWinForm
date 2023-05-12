@@ -37,8 +37,8 @@
             button_cancel = new Button();
             button_action = new Button();
             label_nounce = new Label();
-            textBox_futura = new TextBox();
             label_futura = new Label();
+            comboBox_futura = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown_totalSum).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown_nounce).BeginInit();
@@ -46,6 +46,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboBox_futura);
             panel1.Controls.Add(numericUpDown_totalSum);
             panel1.Controls.Add(label_totalSum);
             panel1.Controls.Add(textBox_product);
@@ -54,7 +55,6 @@
             panel1.Controls.Add(button_cancel);
             panel1.Controls.Add(button_action);
             panel1.Controls.Add(label_nounce);
-            panel1.Controls.Add(textBox_futura);
             panel1.Controls.Add(label_futura);
             panel1.Location = new Point(14, 16);
             panel1.Margin = new Padding(3, 4, 3, 4);
@@ -136,14 +136,6 @@
             label_nounce.TabIndex = 0;
             label_nounce.Text = "Количество:";
             // 
-            // textBox_futura
-            // 
-            textBox_futura.Location = new Point(145, 40);
-            textBox_futura.Margin = new Padding(3, 4, 3, 4);
-            textBox_futura.Name = "textBox_futura";
-            textBox_futura.Size = new Size(229, 27);
-            textBox_futura.TabIndex = 0;
-            // 
             // label_futura
             // 
             label_futura.AutoSize = true;
@@ -152,6 +144,14 @@
             label_futura.Size = new Size(108, 20);
             label_futura.TabIndex = 0;
             label_futura.Text = "№ накладной:";
+            // 
+            // comboBox_futura
+            // 
+            comboBox_futura.FormattingEnabled = true;
+            comboBox_futura.Location = new Point(146, 44);
+            comboBox_futura.Name = "comboBox_futura";
+            comboBox_futura.Size = new Size(229, 28);
+            comboBox_futura.TabIndex = 0;
             // 
             // AEFuturaInfoForm
             // 
@@ -177,9 +177,9 @@
         private Button button_cancel;
         private Button button_action;
         private Label label_nounce;
-        private TextBox textBox_futura;
         private Label label_futura;
         private NumericUpDown numericUpDown_totalSum;
         private Label label_totalSum;
+        private ComboBox comboBox_futura;
     }
 }
