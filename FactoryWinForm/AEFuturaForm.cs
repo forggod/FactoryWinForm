@@ -11,6 +11,8 @@ namespace FactoryWinForm
         {
             _connection = new NpgsqlConnection(con);
             InitializeComponent();
+            comboBoxAdd();
+
             if (id < 1)
             {
                 this.Text = "Добавить запись";
@@ -21,7 +23,7 @@ namespace FactoryWinForm
             {
                 this.Text = "Изменить запись";
                 button_action.Text = "Изменить";
-                textBox_name.Text = attributes[0];
+                comboBox_name.SelectedItem = attributes[0];
                 string[] dateSt = attributes[1].Split('.');
                 dateSt[2] = dateSt[2].Split(' ')[0];
                 dateTimePicker_date.Value = new
@@ -46,7 +48,7 @@ namespace FactoryWinForm
             {
                 using (NpgsqlCommand npgsqlCommand = new
                     NpgsqlCommand($"INSERT INTO futura (id_customer, date, payment_type, prepayment, sent)" +
-                    $" VALUES ('{idCustomer}', '{date}', '{paymentType}', '{prepayment}', '{sent})", _connection))
+                    $" VALUES ('{idCustomer}', '{date}', '{paymentType}', '{prepayment}', '{sent}')", _connection))
                 {
                     npgsqlCommand.ExecuteNonQuery();
                 }
@@ -72,7 +74,7 @@ namespace FactoryWinForm
         }
         private void button_action_Click(object sender, EventArgs e)
         {
-            string name = textBox_name.Text;
+            string name = comboBox_name.SelectedItem.ToString();
             DateTime dateTime = dateTimePicker_date.Value;
             string date = $"{dateTime.Year}-{dateTime.Month}-{dateTime.Day}";
             string? paymentType = domainUpDown_paymentType.SelectedItem.ToString();
@@ -113,6 +115,19 @@ namespace FactoryWinForm
             if (dataSet.Tables[0].Rows.Count == 0)
                 return 0;
             return Convert.ToInt32(dataSet.Tables[0].Rows[0].ItemArray[0]);
+        }
+        private void comboBoxAdd()
+        {
+            DataSet dataSet = new DataSet();
+            using (NpgsqlDataAdapter dataAdapter = new
+                NpgsqlDataAdapter($"SELECT name FROM customers;", _connection))
+            {
+                dataAdapter.Fill(dataSet);
+            }
+            for (int i = 0; i < dataSet.Tables[0].Rows.Count; i++)
+            {
+                comboBox_name.Items.Add(dataSet.Tables[0].Rows[i].ItemArray[0].ToString());
+            }
         }
     }
 }

@@ -1,8 +1,5 @@
-﻿using Microsoft.VisualBasic;
-using Npgsql;
+﻿using Npgsql;
 using System.Data;
-using System.Security.Cryptography;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace FactoryWinForm
 {
@@ -46,18 +43,34 @@ namespace FactoryWinForm
         private void initConnection()
         {
             _connection = new NpgsqlConnection(_stringConn);
-            npgsqlAnswer();
+            NpgsqlConnection connection = new NpgsqlConnection(_stringConn);
+            npgsqlAnswer(connection);
         }
 
         private void updateDateGridView()
         {
-            // TODO: добавить обновление данных таблицы с сохранением выбранной строки
-            // npgsqlAnswer();
+            NpgsqlConnection connection = new NpgsqlConnection(_stringConn);
+            int sId = 0;
+            if (dataGridView_Data.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = dataGridView_Data.SelectedRows[0];
+                sId = Convert.ToInt32(row.Cells[0].Value);
+            }
+            npgsqlAnswer(connection);
+
+            dataGridView_Data.ClearSelection();
+            foreach (DataGridViewRow row in dataGridView_Data.Rows)
+            {
+                if (row.Cells[0].Value.Equals(sId))
+                {
+                    row.Selected = true;
+                }
+            }
         }
 
-        private void npgsqlAnswer()
+        private void npgsqlAnswer(NpgsqlConnection connection)
         {
-            _connection.Open();
+            connection.Open();
 
             string sql = $"SELECT * FROM {_table};";
 
@@ -68,7 +81,7 @@ namespace FactoryWinForm
 
             }
 
-            using (NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, _connection))
+            using (NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(sql, connection))
             {
                 _dataSet.Reset();
                 dataAdapter.Fill(_dataSet);
@@ -82,7 +95,7 @@ namespace FactoryWinForm
             for (int i = 0; i < n; i++)
                 dataGridView_Data.Columns[i + 1].HeaderText = _namesTables[i];
 
-            _connection.Close();
+            connection.Close();
             if (_table == "futura")
                 updateSecondTable(0);
         }
