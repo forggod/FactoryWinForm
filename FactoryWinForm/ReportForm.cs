@@ -65,10 +65,10 @@ namespace FactoryWinForm
 
         private void button_action_Click(object sender, EventArgs e)
         {
-            string[] dt = dateTimePicker_start.Text.Split('.');
-            string dateStart = $"{dt[2]}-{dt[1]}-{dt[0]}";
-            dt = dateTimePicker_end.Text.Split('.');
-            string dateEnd = $"{dt[2]}-{dt[1]}-{dt[0]}";
+            string[] dts = dateTimePicker_start.Text.Split('.');
+            string dateStart = $"{dts[2]}-{dts[1]}-{dts[0]}";
+            string[] dte = dateTimePicker_end.Text.Split('.');
+            string dateEnd = $"{dte[2]}-{dte[1]}-{dte[0]}";
             string selectedNames = "";
             int n = dataGridView_clients.SelectedRows.Count;
             if (n == 0)
@@ -82,7 +82,7 @@ namespace FactoryWinForm
             string sql = $"SELECT fi.id, fi.name as product, f.name as customer, fi.quantity, fi.price FROM (" +
                 $"SELECT f.id, c.name, f.total_sum FROM futura f JOIN(" +
                 $"SELECT id, name FROM customers WHERE {selectedNames}" +
-                $") c ON f.id_customer = c.id WHERE f.sent = true AND f.date >= '{dateStart}' AND f.date <= '{dateEnd}'" +
+                $") c ON f.id_customer = c.id WHERE f.sent = false AND f.date >= '{dateStart}' AND f.date <= '{dateEnd}'" +
                 $") f JOIN(SELECT fi.id, fi.id_futura, fi.quantity, fi.price, p.name FROM futura_info fi JOIN " +
                 $"products p ON fi.id_product = p.id" +
                 $") fi ON fi.id_futura = f.id;";
