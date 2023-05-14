@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel_address = new Panel();
+            comboBox_name = new ComboBox();
             label_paymentType = new Label();
             domainUpDown_paymentType = new DomainUpDown();
             dateTimePicker_date = new DateTimePicker();
@@ -38,7 +39,6 @@
             button_cancel = new Button();
             button_action = new Button();
             label_name = new Label();
-            comboBox_name = new ComboBox();
             panel_address.SuspendLayout();
             SuspendLayout();
             // 
@@ -54,17 +54,27 @@
             panel_address.Controls.Add(button_cancel);
             panel_address.Controls.Add(button_action);
             panel_address.Controls.Add(label_name);
-            panel_address.Location = new Point(10, 10);
+            panel_address.Location = new Point(11, 13);
+            panel_address.Margin = new Padding(3, 4, 3, 4);
             panel_address.Name = "panel_address";
-            panel_address.Size = new Size(360, 237);
+            panel_address.Size = new Size(411, 316);
             panel_address.TabIndex = 4;
+            // 
+            // comboBox_name
+            // 
+            comboBox_name.FormattingEnabled = true;
+            comboBox_name.Location = new Point(125, 40);
+            comboBox_name.Margin = new Padding(3, 4, 3, 4);
+            comboBox_name.Name = "comboBox_name";
+            comboBox_name.Size = new Size(250, 28);
+            comboBox_name.TabIndex = 0;
             // 
             // label_paymentType
             // 
             label_paymentType.AutoSize = true;
-            label_paymentType.Location = new Point(176, 120);
+            label_paymentType.Location = new Point(201, 160);
             label_paymentType.Name = "label_paymentType";
-            label_paymentType.Size = new Size(71, 15);
+            label_paymentType.Size = new Size(90, 20);
             label_paymentType.TabIndex = 8;
             label_paymentType.Text = "Тип оплаты";
             // 
@@ -72,27 +82,24 @@
             // 
             domainUpDown_paymentType.Items.Add("Наличные");
             domainUpDown_paymentType.Items.Add("Внесение в кассу");
-            domainUpDown_paymentType.Location = new Point(176, 148);
-            domainUpDown_paymentType.Margin = new Padding(3, 2, 3, 2);
+            domainUpDown_paymentType.Location = new Point(201, 197);
             domainUpDown_paymentType.Name = "domainUpDown_paymentType";
-            domainUpDown_paymentType.Size = new Size(131, 23);
+            domainUpDown_paymentType.Size = new Size(150, 27);
             domainUpDown_paymentType.TabIndex = 4;
             // 
             // dateTimePicker_date
             // 
-            dateTimePicker_date.Location = new Point(109, 72);
-            dateTimePicker_date.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker_date.Location = new Point(125, 96);
             dateTimePicker_date.Name = "dateTimePicker_date";
-            dateTimePicker_date.Size = new Size(219, 23);
+            dateTimePicker_date.Size = new Size(250, 27);
             dateTimePicker_date.TabIndex = 1;
             // 
             // checkBox_sent
             // 
             checkBox_sent.AutoSize = true;
-            checkBox_sent.Location = new Point(38, 150);
-            checkBox_sent.Margin = new Padding(3, 2, 3, 2);
+            checkBox_sent.Location = new Point(43, 200);
             checkBox_sent.Name = "checkBox_sent";
-            checkBox_sent.Size = new Size(98, 19);
+            checkBox_sent.Size = new Size(123, 24);
             checkBox_sent.TabIndex = 3;
             checkBox_sent.Text = "отправленно";
             checkBox_sent.UseVisualStyleBackColor = true;
@@ -100,10 +107,9 @@
             // checkBox_prepayment
             // 
             checkBox_prepayment.AutoSize = true;
-            checkBox_prepayment.Location = new Point(38, 119);
-            checkBox_prepayment.Margin = new Padding(3, 2, 3, 2);
+            checkBox_prepayment.Location = new Point(43, 159);
             checkBox_prepayment.Name = "checkBox_prepayment";
-            checkBox_prepayment.Size = new Size(90, 19);
+            checkBox_prepayment.Size = new Size(113, 24);
             checkBox_prepayment.TabIndex = 2;
             checkBox_prepayment.Text = "предоплата";
             checkBox_prepayment.UseVisualStyleBackColor = true;
@@ -111,17 +117,18 @@
             // label_address
             // 
             label_address.AutoSize = true;
-            label_address.Location = new Point(29, 72);
+            label_address.Location = new Point(33, 96);
             label_address.Name = "label_address";
-            label_address.Size = new Size(35, 15);
+            label_address.Size = new Size(44, 20);
             label_address.TabIndex = 3;
             label_address.Text = "Дата:";
             // 
             // button_cancel
             // 
-            button_cancel.Location = new Point(228, 190);
+            button_cancel.Location = new Point(261, 253);
+            button_cancel.Margin = new Padding(3, 4, 3, 4);
             button_cancel.Name = "button_cancel";
-            button_cancel.Size = new Size(100, 30);
+            button_cancel.Size = new Size(114, 40);
             button_cancel.TabIndex = 7;
             button_cancel.Text = "Отмена";
             button_cancel.UseVisualStyleBackColor = true;
@@ -129,9 +136,10 @@
             // 
             // button_action
             // 
-            button_action.Location = new Point(28, 190);
+            button_action.Location = new Point(32, 253);
+            button_action.Margin = new Padding(3, 4, 3, 4);
             button_action.Name = "button_action";
-            button_action.Size = new Size(100, 30);
+            button_action.Size = new Size(114, 40);
             button_action.TabIndex = 6;
             button_action.Text = "Добавить";
             button_action.UseVisualStyleBackColor = true;
@@ -140,28 +148,19 @@
             // label_name
             // 
             label_name.AutoSize = true;
-            label_name.Location = new Point(28, 33);
+            label_name.Location = new Point(32, 44);
             label_name.Name = "label_name";
-            label_name.Size = new Size(64, 15);
+            label_name.Size = new Size(78, 20);
             label_name.TabIndex = 0;
             label_name.Text = "Заказщик:";
             // 
-            // comboBox_name
-            // 
-            comboBox_name.FormattingEnabled = true;
-            comboBox_name.Location = new Point(109, 30);
-            comboBox_name.Name = "comboBox_name";
-            comboBox_name.Size = new Size(219, 23);
-            comboBox_name.TabIndex = 0;
-            // 
             // AEFuturaForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(384, 261);
+            ClientSize = new Size(439, 348);
             Controls.Add(panel_address);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "AEFuturaForm";
             Text = "AEFuturaForm";

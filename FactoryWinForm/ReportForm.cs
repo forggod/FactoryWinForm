@@ -74,7 +74,7 @@ namespace FactoryWinForm
             if (n == 0)
                 return;
             selectedNames += $"name = '{dataGridView_clients.SelectedRows[0].Cells[1].Value}'";
-            for (int i = 2; i < n; i++)
+            for (int i = 1; i < n; i++)
             {
                 selectedNames += $" OR name = '{dataGridView_clients.SelectedRows[i].Cells[1].Value}'";
             }

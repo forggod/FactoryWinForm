@@ -39,6 +39,8 @@
             ToolStripMenuItem_editFutura = new ToolStripMenuItem();
             ToolStripMenuItem_editFuturaInfo = new ToolStripMenuItem();
             ToolStripMenuItem_Delete = new ToolStripMenuItem();
+            toolStripMenuItem_futura = new ToolStripMenuItem();
+            toolStripMenuItem_futuraInfo = new ToolStripMenuItem();
             timer_update = new System.Windows.Forms.Timer(components);
             dataGridView_dataSecond = new DataGridView();
             label_secondTable = new Label();
@@ -93,7 +95,7 @@
             // 
             ToolStripMenuItem_Add.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_addFutura, ToolStripMenuItem_addFuturaInfo });
             ToolStripMenuItem_Add.Name = "ToolStripMenuItem_Add";
-            ToolStripMenuItem_Add.Size = new Size(161, 26);
+            ToolStripMenuItem_Add.Size = new Size(224, 26);
             ToolStripMenuItem_Add.Text = "Добавить";
             ToolStripMenuItem_Add.Click += ToolStripMenuItem_Add_Click;
             // 
@@ -117,7 +119,7 @@
             // 
             ToolStripMenuItem_Edit.DropDownItems.AddRange(new ToolStripItem[] { ToolStripMenuItem_editFutura, ToolStripMenuItem_editFuturaInfo });
             ToolStripMenuItem_Edit.Name = "ToolStripMenuItem_Edit";
-            ToolStripMenuItem_Edit.Size = new Size(161, 26);
+            ToolStripMenuItem_Edit.Size = new Size(224, 26);
             ToolStripMenuItem_Edit.Text = "Изменить";
             ToolStripMenuItem_Edit.Click += ToolStripMenuItem_Edit_Click;
             // 
@@ -139,14 +141,31 @@
             // 
             // ToolStripMenuItem_Delete
             // 
+            ToolStripMenuItem_Delete.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem_futura, toolStripMenuItem_futuraInfo });
             ToolStripMenuItem_Delete.Name = "ToolStripMenuItem_Delete";
-            ToolStripMenuItem_Delete.Size = new Size(161, 26);
+            ToolStripMenuItem_Delete.Size = new Size(224, 26);
             ToolStripMenuItem_Delete.Text = "Удалить";
             ToolStripMenuItem_Delete.Click += ToolStripMenuItem_Delete_Click;
             // 
+            // toolStripMenuItem_futura
+            // 
+            toolStripMenuItem_futura.Name = "toolStripMenuItem_futura";
+            toolStripMenuItem_futura.Size = new Size(224, 26);
+            toolStripMenuItem_futura.Text = "Накладная";
+            toolStripMenuItem_futura.Visible = false;
+            toolStripMenuItem_futura.Click += toolStripMenuItem_futura_Click;
+            // 
+            // toolStripMenuItem_futuraInfo
+            // 
+            toolStripMenuItem_futuraInfo.Name = "toolStripMenuItem_futuraInfo";
+            toolStripMenuItem_futuraInfo.Size = new Size(224, 26);
+            toolStripMenuItem_futuraInfo.Text = "Отчёт";
+            toolStripMenuItem_futuraInfo.Visible = false;
+            toolStripMenuItem_futuraInfo.Click += toolStripMenuItem_futuraInfo_Click;
+            // 
             // timer_update
             // 
-            timer_update.Interval = 5000;
+            timer_update.Interval = 2000;
             timer_update.Tick += timer_update_Tick;
             // 
             // dataGridView_dataSecond
@@ -230,5 +249,7 @@
         private ToolStripMenuItem ToolStripMenuItem_addFuturaInfo;
         private ToolStripMenuItem ToolStripMenuItem_editFutura;
         private ToolStripMenuItem ToolStripMenuItem_editFuturaInfo;
+        private ToolStripMenuItem toolStripMenuItem_futura;
+        private ToolStripMenuItem toolStripMenuItem_futuraInfo;
     }
 }

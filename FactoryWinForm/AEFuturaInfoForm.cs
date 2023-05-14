@@ -80,7 +80,7 @@ namespace FactoryWinForm
             {
                 using (NpgsqlCommand npgsqlCommand = new
                     NpgsqlCommand($"UPDATE futura_info SET id_futura = '{idFutura}', id_product = '{idProduct}', " +
-                    $"quantity = '{nounce}', price = '{sum}';", _connection))
+                    $"quantity = '{nounce}', price = '{sum}' WHERE id = '{_id}';", _connection))
                 {
                     npgsqlCommand.ExecuteNonQuery();
                 }

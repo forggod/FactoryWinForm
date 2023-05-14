@@ -46,7 +46,8 @@ CREATE TABLE futura_info (
 
 CREATE OR REPLACE FUNCTION upd_futura() RETURNS TRIGGER AS $$
 	BEGIN
-		UPDATE futura SET total_sum = NEW.quantity * NEW.price
+		UPDATE futura SET total_sum = (SELECT sum(quantity * price) FROM 
+									   	futura_info WHERE id_futura = NEW.id_futura)
 			WHERE id = NEW.id_futura;
 		UPDATE products SET nounce = nounce - NEW.quantity
 			WHERE id = NEW.id_product;
@@ -55,5 +56,5 @@ CREATE OR REPLACE FUNCTION upd_futura() RETURNS TRIGGER AS $$
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE TRIGGER upd_futura 
-BEFORE INSERT OR UPDATE ON futura_info 
+AFTER INSERT OR UPDATE OR DELETE ON futura_info 
 	FOR EACH ROW EXECUTE PROCEDURE upd_futura();

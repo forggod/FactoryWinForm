@@ -33,9 +33,12 @@ namespace FactoryWinForm
                 ToolStripMenuItem_addFuturaInfo.Visible = true;
                 ToolStripMenuItem_editFutura.Visible = true;
                 ToolStripMenuItem_editFuturaInfo.Visible = true;
+                toolStripMenuItem_futura.Visible = true;
+                toolStripMenuItem_futuraInfo.Visible = true;
 
                 ToolStripMenuItem_Add.Click -= ToolStripMenuItem_Add_Click;
                 ToolStripMenuItem_Edit.Click -= ToolStripMenuItem_Edit_Click;
+                ToolStripMenuItem_Delete.Click -= ToolStripMenuItem_Delete_Click;
             }
             this.Text = formName;
         }
@@ -56,12 +59,25 @@ namespace FactoryWinForm
                 DataGridViewRow row = dataGridView_Data.SelectedRows[0];
                 sId = Convert.ToInt32(row.Cells[0].Value);
             }
+            int sIdS = 0;
+            if (dataGridView_dataSecond.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = dataGridView_dataSecond.SelectedRows[0];
+                sIdS = Convert.ToInt32(row.Cells[0].Value);
+            }
             npgsqlAnswer(connection);
 
             dataGridView_Data.ClearSelection();
             foreach (DataGridViewRow row in dataGridView_Data.Rows)
             {
                 if (row.Cells[0].Value.Equals(sId))
+                {
+                    row.Selected = true;
+                }
+            }
+            foreach (DataGridViewRow row in dataGridView_dataSecond.Rows)
+            {
+                if (row.Cells[0].Value.Equals(sIdS))
                 {
                     row.Selected = true;
                 }
@@ -124,6 +140,15 @@ namespace FactoryWinForm
         {
             _connection.Open();
             using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand($"DELETE FROM {_table} WHERE id = '{id}';", _connection))
+            {
+                npgsqlCommand.ExecuteNonQuery();
+            }
+            _connection.Close();
+        }
+        private void deleteDataSecond(int id)
+        {
+            _connection.Open();
+            using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand($"DELETE FROM futura_info WHERE id = '{id}';", _connection))
             {
                 npgsqlCommand.ExecuteNonQuery();
             }
@@ -255,6 +280,30 @@ namespace FactoryWinForm
             DataGridViewRow row = dataGridView_Data.SelectedRows[0];
             int selectedId = Convert.ToInt32(row.Cells[0].Value);
             updateSecondTable(selectedId);
+        }
+
+        private void toolStripMenuItem_futuraInfo_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_dataSecond.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите накладную");
+                return;
+            }
+            DataGridViewRow row = dataGridView_dataSecond.SelectedRows[0];
+            int sId = Convert.ToInt32(row.Cells[0].Value);
+            deleteDataSecond(sId);
+        }
+
+        private void toolStripMenuItem_futura_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_Data.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите накладную");
+                return;
+            }
+            DataGridViewRow row = dataGridView_Data.SelectedRows[0];
+            int sId = Convert.ToInt32(row.Cells[0].Value);
+            deleteData(sId);
         }
     }
 }
