@@ -47,7 +47,7 @@ namespace FactoryWinForm
         }
         private void button_action_Click(object sender, EventArgs e)
         {
-            if (_id > 0 && textBox_name.Text != "" && numericUpDown_nounce.Value != 0)
+            if (_id > 0 && textBox_name.Text != "")
             {
                 string name = textBox_name.Text;
                 int nounce = Convert.ToInt32(numericUpDown_nounce.Value);
